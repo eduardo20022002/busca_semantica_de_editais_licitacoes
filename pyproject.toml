@@ -1,0 +1,39 @@
+[project]
+name = "editais"
+version = "0.1.0"
+description = "Pipeline de busca semântica de editais de licitação aderentes ao escopo da Aurora"
+authors = [
+    { name = "Portfolio", email = "example@example.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "openpyxl>=3.1.5",
+    "pypdf>=6.14.2",
+    "python-docx>=1.2.0",
+    "requests>=2.34.2",
+]
+
+[project.scripts]
+coleta-pncp = "editais.cli_coleta:main"
+triagem-pncp = "editais.cli_triagem:main"
+base-teste = "editais.cli_base_teste:main"
+analise-profunda-pncp = "editais.cli_analise_profunda:main"
+
+[build-system]
+requires = ["uv_build>=0.11.15,<0.12.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "mypy>=2.3.0",
+    "pytest>=9.1.1",
+    "types-openpyxl>=3.1.5.20260518",
+    "types-requests>=2.33.0.20260712",
+]
+
+[tool.pytest.ini_options]
+# Resolve "editais" direto de src/ em vez de depender do pacote editável
+# instalado via .pth em site-packages — nesta máquina, o .pth reescrito a cada
+# `uv run` acaba com a flag oculta do macOS (UF_HIDDEN) reaplicada, e o site.py
+# ignora silenciosamente qualquer .pth oculto (ModuleNotFoundError: editais).
+pythonpath = ["src"]

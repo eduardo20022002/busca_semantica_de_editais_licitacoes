@@ -1,0 +1,11 @@
+.DS_Store
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.venv/
+dados/
+base-teste/
+.env
+perfil/produtos-aurora/.embeddings/
+perfil/prioridade/.embeddings/
